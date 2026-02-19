@@ -461,11 +461,66 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
         )}
       </div>
 
+      {/* ── CONFIRM MODAL ── */}
+      {showConfirm && (
+        <div style={s.overlay}>
+          <div style={s.modal}>
+            <h3 style={s.modalTitle}>Confirm Your Submission</h3>
+            <p style={s.modalSubtitle}>
+              Please review your details before submitting. You cannot edit after submission.
+            </p>
+
+            <div style={s.reviewGrid}>
+              <ReviewRow label="Full Name" value={formData.fullName} />
+              <ReviewRow label="Phone Number" value={formData.phoneNumber} />
+              <ReviewRow label="Date of Birth" value={formData.dateOfBirth} />
+              <ReviewRow label="Gender" value={formData.gender} />
+              <ReviewRow label="LGA" value={formData.lga} />
+              <ReviewRow label="Qualification" value={formData.qualification} />
+              <ReviewRow label="Security Experience" value={formData.hasSecurityExp} />
+              {formData.hasSecurityExp === 'Yes' && formData.organizationName && (
+                <ReviewRow label="Organisation" value={formData.organizationName} />
+              )}
+            </div>
+
+            <p style={s.modalWarning}>
+              By confirming, you declare that all information provided is true and accurate.
+            </p>
+
+            <div style={s.modalActions}>
+              <button
+                type="button"
+                style={s.cancelBtn}
+                onClick={() => setShowConfirm(false)}
+              >
+                Go Back &amp; Edit
+              </button>
+              <button
+                type="button"
+                style={s.confirmBtn}
+                onClick={handleConfirmedSubmit}
+              >
+                Confirm &amp; Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </form>
   )
 }
 
 /* ─── Sub-components ─── */
+function ReviewRow({ label, value }) {
+  return (
+    <div style={sr.row}>
+      <span style={sr.rlabel}>{label}</span>
+      <span style={sr.rvalue}>{value || '—'}</span>
+    </div>
+  )
+}
+
 function FormSection({ title, children }) {
   return (
     <div style={ss.section}>
@@ -700,6 +755,100 @@ const s = {
     fontSize: '15px',
     color: '#333',
   },
+  printBtn: {
+    marginTop: '20px',
+    padding: '12px 32px',
+    backgroundColor: '#0f4c0f',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '14px',
+    fontWeight: '700',
+    cursor: 'pointer',
+    letterSpacing: '0.04em',
+    textTransform: 'uppercase',
+    fontFamily: 'var(--font-body, Inter, sans-serif)',
+    boxShadow: '0 3px 10px rgba(15,76,15,0.3)',
+  },
+  /* ── Modal overlay ── */
+  overlay: {
+    position: 'fixed',
+    inset: 0,
+    backgroundColor: 'rgba(0,0,0,0.55)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 1000,
+    padding: '20px',
+  },
+  modal: {
+    backgroundColor: '#fff',
+    borderRadius: '8px',
+    padding: '32px',
+    width: '100%',
+    maxWidth: '520px',
+    maxHeight: '90vh',
+    overflowY: 'auto',
+    boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+  },
+  modalTitle: {
+    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
+    fontSize: '20px',
+    color: '#0f4c0f',
+    margin: '0 0 8px 0',
+  },
+  modalSubtitle: {
+    fontSize: '13.5px',
+    color: '#555',
+    margin: '0 0 20px 0',
+  },
+  reviewGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '2px',
+    marginBottom: '20px',
+    border: '1px solid #e0e8e0',
+    borderRadius: '6px',
+    overflow: 'hidden',
+  },
+  modalWarning: {
+    fontSize: '12.5px',
+    color: '#7a5000',
+    backgroundColor: '#fffbeb',
+    border: '1px solid #f0d080',
+    borderRadius: '5px',
+    padding: '10px 14px',
+    margin: '0 0 24px 0',
+  },
+  modalActions: {
+    display: 'flex',
+    gap: '12px',
+    justifyContent: 'flex-end',
+  },
+  cancelBtn: {
+    padding: '11px 22px',
+    backgroundColor: '#fff',
+    color: '#444',
+    border: '1.5px solid #ccc',
+    borderRadius: '5px',
+    fontSize: '14px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    fontFamily: 'var(--font-body, Inter, sans-serif)',
+  },
+  confirmBtn: {
+    padding: '11px 22px',
+    backgroundColor: '#0f4c0f',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '5px',
+    fontSize: '14px',
+    fontWeight: '700',
+    cursor: 'pointer',
+    fontFamily: 'var(--font-body, Inter, sans-serif)',
+    letterSpacing: '0.03em',
+    boxShadow: '0 3px 10px rgba(15,76,15,0.3)',
+  },
 }
 
 const ss = {
@@ -744,5 +893,31 @@ const ss = {
     color: '#c0392b',
     fontSize: '12.5px',
     margin: 0,
+  },
+}
+
+/* ─── Review row styles ─── */
+const sr = {
+  row: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    gap: '12px',
+    padding: '9px 14px',
+    backgroundColor: '#fff',
+    borderBottom: '1px solid #e8f0e8',
+  },
+  rlabel: {
+    fontSize: '12.5px',
+    fontWeight: '600',
+    color: '#555',
+    flexShrink: 0,
+    minWidth: '140px',
+  },
+  rvalue: {
+    fontSize: '13px',
+    color: '#111',
+    textAlign: 'right',
+    wordBreak: 'break-word',
   },
 }

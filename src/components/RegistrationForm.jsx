@@ -50,6 +50,8 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
   const [photoPreview, setPhotoPreview] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [pdfBlobUrl, setPdfBlobUrl] = useState(null)
 
   /* ── Handlers ── */
   const handleChange = (e) => {
@@ -96,16 +98,20 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
     return Object.keys(e).length === 0
   }
 
-  const handleSubmit = async (e) => {
+  /* Show confirm dialog when form is valid — actual submit happens on confirm */
+  const handleSubmit = (e) => {
     e.preventDefault()
     setSubmitError('')
     if (!validate()) {
-      // Scroll to first error
       const firstErr = document.querySelector('[data-error="true"]')
       if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' })
       return
     }
+    setShowConfirm(true)
+  }
 
+  const handleConfirmedSubmit = async () => {
+    setShowConfirm(false)
     setIsSubmitting(true)
     try {
       const res = await fetch(`${API_URL}/api/register`, {
@@ -121,12 +127,12 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
       const pdfBlob = await res.blob()
 
-      // Extract form number from content-disposition header if available
+      // Extract form number from Content-Disposition header
       const disposition = res.headers.get('Content-Disposition') || ''
       const match = disposition.match(/filename="Amotekun-(AMO-\d+)\.pdf"/)
       const formNo = match ? match[1] : 'AMO-XXXX'
 
-      // Trigger automatic PDF download
+      // Trigger automatic PDF download and keep blob URL for print button
       const blobUrl = URL.createObjectURL(pdfBlob)
       const a = document.createElement('a')
       a.href = blobUrl
@@ -134,8 +140,9 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 5000)
 
+      // Keep blob URL alive so the Print button can use it
+      setPdfBlobUrl(blobUrl)
       onSuccess(formNo)
     } catch (err) {
       setSubmitError(err.message)
@@ -162,6 +169,18 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
         <p style={s.submittedText}>
           Your registration slip has been downloaded. Print it and bring it to the screening venue.
         </p>
+        {pdfBlobUrl && (
+          <button
+            type="button"
+            style={s.printBtn}
+            onClick={() => {
+              const win = window.open(pdfBlobUrl, '_blank')
+              if (win) win.addEventListener('load', () => win.print())
+            }}
+          >
+            Print Registration Slip
+          </button>
+        )}
       </div>
     )
   }

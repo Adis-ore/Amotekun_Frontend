@@ -41,13 +41,13 @@ export default function LandingPage() {
               OYO STATE SECURITY NETWORK AGENCY
             </h1>
             <p className="text-[11px] md:text-[13px] tracking-[0.12em] text-white/80 font-semibold uppercase mt-1">
-              AMOTEKUN CORPS
+              and ÀMỌ̀TẸ́KÙN CORPS
             </p>
           </div>
 
-          {/* Col 3: Amotekun Logo */}
+          {/* Col 3: ÀMỌ̀TẸ́KÙN Logo */}
           <div className="flex-none md:flex-1 flex justify-end items-center">
-            <img src="/amo.jpg" alt="Amotekun Corps" className="w-14 h-14 md:w-20 md:h-20 object-contain" />
+            <img src="/amo.jpg" alt="ÀMỌ̀TẸ́KÙN Corps" className="w-14 h-14 md:w-20 md:h-20 object-contain" />
           </div>
 
         </div>
@@ -70,7 +70,7 @@ export default function LandingPage() {
             OFFICIAL NOTICE | 2026 RECRUITMENT EXERCISE
           </p>
           <h2 className="font-display text-[clamp(28px,5vw,52px)] font-black text-white mb-5 leading-[1.1] tracking-[0.02em]">
-            AMOTEKUN CORPS<br />RECRUITMENT EXERCISE
+            ÀMỌ̀TẸ́KÙN CORPS<br />RECRUITMENT EXERCISE
           </h2>
           <p className="text-[17px] text-white/85 mb-9 max-w-[560px] mx-auto leading-[1.8]">
             Join the frontline of community security across all 33 local government areas of Oyo State.
@@ -105,15 +105,15 @@ export default function LandingPage() {
       <main className="max-w-5xl mx-auto px-6 pb-16">
 
         {/* ── ABOUT ── */}
-        <Section title="About the Amotekun Corps">
+        <Section title="About the ÀMỌ̀TẸ́KÙN Corps">
           <p className="text-[15.5px] text-gray-700 mb-4 leading-[1.8]">
-            The Amotekun Corps is a community-driven, state-based security outfit established by
+            The ÀMỌ̀TẸ́KÙN Corps is a community-driven, state-based security outfit established by
             the Oyo State Government to complement the efforts of the Nigerian Police Force and other
             federal security agencies. It represents a proactive approach to community safety by
             mobilising local resources and personnel to address emerging security challenges.
           </p>
           <p className="text-[15.5px] text-gray-700 mb-4 leading-[1.8]">
-            Amotekun operatives work in collaboration with traditional rulers, community leaders, and
+            ÀMỌ̀TẸ́KÙN operatives work in collaboration with traditional rulers, community leaders, and
             law enforcement agencies to maintain peace, order, and the safety of residents across
             all 33 local government areas of Oyo State.
           </p>
@@ -204,7 +204,7 @@ export default function LandingPage() {
       <footer className="bg-brand border-t-4 border-gold">
         <div className="max-w-[1100px] mx-auto px-6 py-7 text-center">
           <p className="text-[#ccc] text-[13px] my-1">
-            Oyo State Security Network Agency and Amotekun Corps
+            Oyo State Security Network Agency and ÀMỌ̀TẸ́KÙN Corps
           </p>
           <p className="text-[#ccc] text-[13px] my-1">
             © {new Date().getFullYear()} Government of Oyo State. All rights reserved.

@@ -46,9 +46,9 @@ export default function RegistrationPage() {
             </p>
           </div>
 
-          {/* Col 3: Amotekun Logo */}
+          {/* Col 3: ÀMỌ̀TẸ́KÙN Logo */}
           <div className="flex-none md:flex-1 flex justify-end items-center">
-            <img src="/amo.jpg" alt="Amotekun Corps" className="w-14 h-14 md:w-[70px] md:h-[70px] object-contain" />
+            <img src="/amo.jpg" alt="ÀMỌ̀TẸ́KÙN Corps" className="w-14 h-14 md:w-[70px] md:h-[70px] object-contain" />
           </div>
 
         </div>
@@ -81,7 +81,7 @@ export default function RegistrationPage() {
             </h2>
             <p className="text-sm text-gray-700 my-1.5">
               Your Registration Form has been downloaded automatically. Please <strong>print it</strong> and bring it
-              to the official Amotekun Corps screening exercise venue.
+              to the official ÀMỌ̀TẸ́KÙN Corps screening exercise venue.
             </p>
             <p className="text-sm text-gray-700 my-1.5">
               <strong>Keep your form number safe:</strong> {successData.formNo}
@@ -126,7 +126,7 @@ export default function RegistrationPage() {
       <footer className="bg-brand border-t-4 border-gold mt-auto">
         <div className="max-w-[1100px] mx-auto px-6 py-5 text-center">
           <p className="text-[#ccc] text-[13px] my-1">
-            Oyo State Security Network Agency and Amotekun Corps
+            Oyo State Security Network Agency and ÀMỌ̀TẸ́KÙN Corps
           </p>
           <p className="text-[#ccc] text-[13px] my-1">
             © {new Date().getFullYear()} Government of Oyo State. All rights reserved.

@@ -16,15 +16,6 @@ const OYO_LGAS = [
   'Saki West', 'Surulere',
 ]
 
-const QUALIFICATIONS = [
-  'FSLC (First School Leaving Certificate)',
-  'SSCE / WAEC / NECO',
-  'OND (Ordinary National Diploma)',
-  'HND (Higher National Diploma)',
-  'B.Sc / B.A (University Degree)',
-  'Post Graduate',
-]
-
 // Age boundaries: must be 18–45 as of today
 function getDateLimits() {
   const today = new Date()
@@ -91,7 +82,6 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
     if (!formData.gender)                 e.gender          = 'Gender is required'
     if (!formData.lga)                    e.lga             = 'LGA is required'
     if (!formData.homeAddress.trim())     e.homeAddress     = 'Home address is required'
-    if (!formData.qualification)          e.qualification   = 'Qualification is required'
     if (!formData.hasSecurityExp)         e.hasSecurityExp  = 'Please answer this question'
     if (!formData.declaration)            e.declaration     = 'You must accept the declaration to proceed'
     setErrors(e)
@@ -273,17 +263,17 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
           />
         </Field>
 
-        <Field label="Highest Academic Qualification" required error={errors.qualification}>
-          <select
+        <Field label="Highest Academic Qualification" error={errors.qualification}>
+          <input
+            type="text"
             name="qualification"
             value={formData.qualification}
             onChange={handleChange}
             style={inputStyle(errors.qualification)}
+            placeholder="e.g. SSCE, OND, B.Sc — leave blank if none"
             disabled={isSubmitting}
-          >
-            <option value="">Select Qualification</option>
-            {QUALIFICATIONS.map(q => <option key={q} value={q}>{q}</option>)}
-          </select>
+          />
+          <small style={s.hint}>Optional. If left blank, NIL will appear on your slip.</small>
         </Field>
 
       </FormSection>

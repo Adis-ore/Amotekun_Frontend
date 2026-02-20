@@ -28,10 +28,9 @@ export default function LandingPage() {
         <div style={s.headerInner}>
           <div style={s.logoWrap}>
             <img
-              src="/oyo-state-logo.png"
+              src="/OyoLogo.png"
               alt="Oyo State Seal"
               style={s.logo}
-              onError={e => { e.target.style.display = 'none' }}
             />
           </div>
 
@@ -43,10 +42,9 @@ export default function LandingPage() {
 
           <div style={s.logoWrap}>
             <img
-              src="/amotekun-logo.png"
+              src="/amo.jpg"
               alt="Amotekun Corps"
               style={s.logo}
-              onError={e => { e.target.style.display = 'none' }}
             />
           </div>
         </div>

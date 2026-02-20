@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import imageCompression from 'browser-image-compression'
 import { LuCamera, LuUser, LuCircleX, LuCircleCheck } from 'react-icons/lu'
 
@@ -43,12 +43,14 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
     organizationName: '', membershipDuration: '', specialSkill: '',
     otherInfo: '', passportPhoto: '', declaration: false,
   })
-  const [errors, setErrors]         = useState({})
+  const [errors, setErrors]             = useState({})
   const [photoPreview, setPhotoPreview] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError]   = useState('')
   const [showConfirm, setShowConfirm]   = useState(false)
   const [pdfBlobUrl, setPdfBlobUrl]     = useState(null)
+  const [showErrBanner, setShowErrBanner] = useState(false)
+  const errBannerRef = useRef(null)
 
   /* ── Handlers ── */
   const handleChange = (e) => {
@@ -80,18 +82,20 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
   const validate = () => {
     const e = {}
-    if (!formData.fullName.trim())       e.fullName       = 'Full name is required'
-    if (!formData.phoneNumber.trim())    e.phoneNumber    = 'Phone number is required'
+    if (!formData.fullName.trim())       e.fullName       = 'Full Name is required'
+    if (!formData.phoneNumber.trim())    e.phoneNumber    = 'Phone Number is required'
     else if (!/^(\+234|0)[0-9]{10}$/.test(formData.phoneNumber))
                                          e.phoneNumber    = 'Enter a valid Nigerian phone number (e.g. 08012345678)'
-    if (!formData.dateOfBirth)           e.dateOfBirth    = 'Date of birth is required'
+    if (!formData.dateOfBirth)           e.dateOfBirth    = 'Date of Birth is required'
     if (!formData.gender)                e.gender         = 'Gender is required'
-    if (!formData.lga)                   e.lga            = 'LGA is required'
-    if (!formData.homeAddress.trim())    e.homeAddress    = 'Home address is required'
-    if (!formData.hasSecurityExp)        e.hasSecurityExp = 'Please answer this question'
+    if (!formData.lga)                   e.lga            = 'Local Government Area (LGA) is required'
+    if (!formData.homeAddress.trim())    e.homeAddress    = 'Permanent Home Address is required'
+    if (!formData.hasSecurityExp)        e.hasSecurityExp = 'Security experience question must be answered'
     if (!formData.declaration)           e.declaration    = 'You must accept the declaration to proceed'
     setErrors(e)
-    return Object.keys(e).length === 0
+    const hasErrors = Object.keys(e).length > 0
+    setShowErrBanner(hasErrors)
+    return !hasErrors
   }
 
   /* COMPLETE APPLICATION → validate → open review modal */
@@ -99,10 +103,12 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
     e.preventDefault()
     setSubmitError('')
     if (!validate()) {
-      const firstErr = document.querySelector('[data-error="true"]')
-      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      setTimeout(() => {
+        errBannerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }, 30)
       return
     }
+    setShowErrBanner(false)
     setShowConfirm(true)
   }
 
@@ -185,6 +191,29 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
   return (
     <>
       <form onSubmit={handleSubmit} noValidate>
+
+        {/* ── VALIDATION ERROR BANNER ── */}
+        {showErrBanner && Object.keys(errors).length > 0 && (
+          <div
+            ref={errBannerRef}
+            className="mx-6 md:mx-8 mt-6 mb-2 rounded-lg border-[1.5px] border-danger bg-red-50 px-5 py-4"
+          >
+            <p className="text-danger font-bold text-[13.5px] mb-2.5 flex items-center gap-2">
+              <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-danger text-white text-[11px] font-extrabold shrink-0">
+                {Object.keys(errors).length}
+              </span>
+              Please fill in the following required {Object.keys(errors).length === 1 ? 'field' : 'fields'} before proceeding:
+            </p>
+            <ul className="flex flex-col gap-1.5 pl-1">
+              {Object.values(errors).map((msg, i) => (
+                <li key={i} className="flex items-start gap-2 text-[13px] text-danger">
+                  <span className="mt-[3px] shrink-0">•</span>
+                  <span>{msg}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* 1. PERSONAL INFORMATION */}
         <FormSection title="1. Personal Information">

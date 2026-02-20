@@ -28,7 +28,7 @@ export default function RegistrationPage() {
       <header className="bg-brand border-b-[5px] border-gold">
         <div className="flex items-center w-full px-6 md:px-10 py-4 md:py-5 flex-wrap md:flex-nowrap justify-between gap-2">
 
-          {/* Col 1: Oyo Logo */}
+          {/* Col 1: Oyo Logo*/}
           <div className="flex-none md:flex-1 flex justify-start items-center">
             <img src="/OyoLogo.png" alt="Oyo State" className="w-14 h-14 md:w-[70px] md:h-[70px] object-contain" />
           </div>

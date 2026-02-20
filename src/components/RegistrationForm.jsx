@@ -92,6 +92,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
     if (!formData.homeAddress.trim())    e.homeAddress    = 'Permanent Home Address is required'
     if (!formData.hasSecurityExp)        e.hasSecurityExp = 'Security experience question must be answered'
     if (!formData.declaration)           e.declaration    = 'You must accept the declaration to proceed'
+    if (!formData.passportPhoto)  e.passportPhoto = 'Passport photograph is required'
     setErrors(e)
     const hasErrors = Object.keys(e).length > 0
     setShowErrBanner(hasErrors)
@@ -403,7 +404,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
         </FormSection>
 
         {/* 4. PASSPORT PHOTOGRAPH */}
-        <FormSection title="4. Passport Photograph">
+        <FormSection title="4. Passport Photograph" error={errors.passportPhoto}>
           <div className="flex gap-6 items-start flex-wrap">
             <div className="flex-1 min-w-[220px]">
               <label

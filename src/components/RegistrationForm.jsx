@@ -124,9 +124,10 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
       // Trigger automatic PDF download and keep blob URL for print button
       const blobUrl = URL.createObjectURL(pdfBlob)
+      const safeName = formData.fullName.trim().replace(/\s+/g, '_')
       const a = document.createElement('a')
       a.href = blobUrl
-      a.download = `Amotekun-Registration-${formNo}.pdf`
+      a.download = `${formNo}_${safeName}.pdf`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

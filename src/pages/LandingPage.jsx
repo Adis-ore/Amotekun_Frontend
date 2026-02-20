@@ -64,7 +64,10 @@ export default function LandingPage() {
           <button
             style={{
               ...s.ctaBtn,
-              ...(isPortalClosed ? s.ctaBtnClosed : {}),
+              backgroundColor: isPortalClosed ? '#888' : '#ffc107',
+              borderColor: isPortalClosed ? '#888' : '#ffc107',
+              color: isPortalClosed ? '#fff' : '#1a1a1a',
+              boxShadow: isPortalClosed ? 'none' : '0 4px 20px rgba(255,193,7,0.45)',
             }}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}

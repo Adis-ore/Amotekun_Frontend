@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import CountdownBanner from '../components/CountdownBanner'
-import { LuHouse, LuCalendar, LuFileText, LuShield, LuCheck, LuTriangleAlert, LuArrowRight } from 'react-icons/lu'
+import { LuHouse, LuCalendar, LuShield, LuCheck, LuTriangleAlert, LuArrowRight } from 'react-icons/lu'
 
 const PORTAL_LAUNCH_DATE = new Date('2026-02-19')
 const DEADLINE = new Date(PORTAL_LAUNCH_DATE)
@@ -20,92 +20,104 @@ export default function LandingPage() {
   }, [])
 
   return (
-    <div style={s.page}>
+    <div className="font-sans text-gray-900 bg-[#f4f6f4] leading-[1.7]">
       <CountdownBanner />
 
       {/* ── OFFICIAL HEADER ── */}
-      <header style={s.header}>
-        <div style={s.headerInner}>
-          <div style={s.logoWrap}>
-            <img
-              src="/OyoLogo.png"
-              alt="Oyo State Seal"
-              style={s.logo}
-            />
+      <header className="bg-brand border-b-[5px] border-gold">
+        <div className="flex items-center w-full px-6 md:px-10 py-4 md:py-5 flex-wrap md:flex-nowrap justify-between gap-2">
+
+          {/* Col 1: Oyo Logo */}
+          <div className="flex-none md:flex-1 flex justify-start items-center">
+            <img src="/OyoLogo.png" alt="Oyo State Seal" className="w-14 h-14 md:w-20 md:h-20 object-contain" />
           </div>
 
-          <div style={s.headerCenter}>
-            <p style={s.headerSupra}>GOVERNMENT OF OYO STATE</p>
-            <h1 style={s.headerTitle}>OYO STATE SECURITY NETWORK</h1>
-            <p style={s.headerSub}>OPERATION AMOTEKUN</p>
+          {/* Col 2: Center text — perfectly centered on full page width */}
+          <div className="order-last md:order-none w-full md:flex-1 flex flex-col items-center text-center py-1 md:py-0">
+            <p className="text-[10px] md:text-[11px] tracking-[0.15em] font-semibold text-white/70 uppercase mb-1">
+              GOVERNMENT OF OYO STATE
+            </p>
+            <h1 className="font-display text-sm md:text-2xl lg:text-[26px] font-black leading-tight tracking-[0.02em] text-white">
+              OYO STATE SECURITY NETWORK AGENCY
+            </h1>
+            <p className="text-[11px] md:text-[13px] tracking-[0.12em] text-white/80 font-semibold uppercase mt-1">
+              AMOTEKUN CORPS
+            </p>
           </div>
 
-          <div style={s.logoWrap}>
-            <img
-              src="/amo.jpg"
-              alt="Amotekun Corps"
-              style={s.logo}
-            />
+          {/* Col 3: Amotekun Logo */}
+          <div className="flex-none md:flex-1 flex justify-end items-center">
+            <img src="/amo.jpg" alt="Amotekun Corps" className="w-14 h-14 md:w-20 md:h-20 object-contain" />
           </div>
+
         </div>
-        <div style={s.headerStripe} />
       </header>
 
       {/* ── HERO ── */}
-      <section style={s.hero}>
-        <div style={s.heroOverlay} />
-        <div style={s.heroContent}>
-          <p style={s.heroEyebrow}>OFFICIAL NOTICE | 2026 RECRUITMENT EXERCISE</p>
-          <h2 style={s.heroTitle}>AMOTEKUN CORPS<br />RECRUITMENT EXERCISE</h2>
-          <p style={s.heroDesc}>
-            The Oyo State Government invites applications from qualified indigenes to serve in
-            the Oyo State Security Network, Operation Amotekun.
+      <section
+        className="relative min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden"
+        style={{ background: 'linear-gradient(160deg, #0d2b0d 0%, #0f4c0f 50%, #1a6b1a 100%)' }}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 20% 80%, rgba(201,168,76,0.12) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%)',
+          }}
+        />
+        <div className="relative max-w-[760px] mx-auto">
+          <p className="text-[11px] tracking-[0.2em] text-gold-bright font-bold mb-4 uppercase">
+            OFFICIAL NOTICE | 2026 RECRUITMENT EXERCISE
+          </p>
+          <h2 className="font-display text-[clamp(28px,5vw,52px)] font-black text-white mb-5 leading-[1.1] tracking-[0.02em]">
+            AMOTEKUN CORPS<br />RECRUITMENT EXERCISE
+          </h2>
+          <p className="text-[17px] text-white/85 mb-9 max-w-[560px] mx-auto leading-[1.8]">
+            Join the frontline of community security across all 33 local government areas of Oyo State.
+            Applications are open to qualified indigenes aged 18–50.
           </p>
           <button
-            style={{
-              ...s.ctaBtn,
-              backgroundColor: isPortalClosed ? '#888' : '#ffc107',
-              borderColor: isPortalClosed ? '#888' : '#ffc107',
-              color: isPortalClosed ? '#fff' : '#1a1a1a',
-              boxShadow: isPortalClosed ? 'none' : '0 4px 20px rgba(255,193,7,0.45)',
-            }}
+            className={`inline-flex items-center gap-2 px-12 py-4 text-base font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+              isPortalClosed
+                ? 'bg-gray-500 border-gray-500 text-white cursor-not-allowed shadow-none'
+                : 'bg-gold-bright border-gold-bright text-gray-900 shadow-[0_4px_20px_rgba(255,193,7,0.45)] hover:shadow-[0_8px_28px_rgba(255,193,7,0.6)] cursor-pointer'
+            }`}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}
           >
             {isPortalClosed ? 'REGISTRATION CLOSED' : (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                PROCEED TO REGISTER <LuArrowRight size={18} />
-              </span>
+              <><span>PROCEED TO REGISTER</span><LuArrowRight size={18} /></>
             )}
           </button>
         </div>
       </section>
 
       {/* ── NOTICE BAND ── */}
-      <div style={s.noticeBand}>
-        <span style={s.noticeBandText}>
-          <LuTriangleAlert size={14} style={{ verticalAlign: 'middle', marginRight: '6px' }} />
+      <div className="bg-[#7f1d1d] py-2.5 px-5 text-center">
+        <span className="text-white text-[13px] font-medium tracking-[0.02em]">
+          <LuTriangleAlert size={14} className="inline align-middle mr-1.5" />
           This recruitment is <strong>FREE AND NOT FOR SALE</strong>. Do not pay money to anyone.
           &nbsp;|&nbsp; Portal closes: <strong>{DEADLINE_DISPLAY}</strong>
         </span>
       </div>
 
-      <main style={s.main}>
+      {/* ── MAIN CONTENT ── */}
+      <main className="max-w-5xl mx-auto px-6 pb-16">
 
         {/* ── ABOUT ── */}
         <Section title="About the Amotekun Corps">
-          <p style={s.bodyText}>
-            The Amotekun Corps is a community-driven, state-based security network established by
+          <p className="text-[15.5px] text-gray-700 mb-4 leading-[1.8]">
+            The Amotekun Corps is a community-driven, state-based security outfit established by
             the Oyo State Government to complement the efforts of the Nigerian Police Force and other
             federal security agencies. It represents a proactive approach to community safety by
             mobilising local resources and personnel to address emerging security challenges.
           </p>
-          <p style={s.bodyText}>
+          <p className="text-[15.5px] text-gray-700 mb-4 leading-[1.8]">
             Amotekun operatives work in collaboration with traditional rulers, community leaders, and
             law enforcement agencies to maintain peace, order, and the safety of residents across
             all 33 local government areas of Oyo State.
           </p>
-          <p style={s.bodyText}>
+          <p className="text-[15.5px] text-gray-700 mb-4 leading-[1.8]">
             This recruitment exercise is an opportunity for qualified Oyo State indigenes to contribute
             to the security and development of their state. We seek committed, disciplined, and
             patriotic individuals ready to serve with integrity.
@@ -114,17 +126,16 @@ export default function LandingPage() {
 
         {/* ── ELIGIBILITY ── */}
         <Section title="Eligibility Requirements">
-          <div style={s.eligGrid}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
               { Icon: LuHouse,    text: 'Must be an Oyo State indigene' },
-              { Icon: LuCalendar, text: 'Must be between 18 and 45 years of age' },
-              { Icon: LuFileText, text: 'Minimum academic qualification: FSLC' },
+              { Icon: LuCalendar, text: 'Must be between 18 and 50 years of age' },
               { Icon: LuShield,   text: 'Must be physically and medically fit' },
               { Icon: LuCheck,    text: 'Must be of good character and conduct' },
             ].map(({ Icon, text }) => (
-              <div key={text} style={s.eligCard}>
-                <span style={s.eligIcon}><Icon size={20} color="#1a6b1a" /></span>
-                <span style={s.eligText}>{text}</span>
+              <div key={text} className="flex items-start gap-3.5 bg-white border border-[#d6e8d6] border-l-4 border-l-brand-mid rounded-md px-4 py-4 shadow-sm">
+                <span className="shrink-0 mt-0.5"><Icon size={20} color="#1a6b1a" /></span>
+                <span className="text-[15px] text-gray-900 font-medium">{text}</span>
               </div>
             ))}
           </div>
@@ -132,29 +143,32 @@ export default function LandingPage() {
 
         {/* ── HOW IT WORKS ── */}
         <Section title="How It Works">
-          <div style={s.stepsRow}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { n: '01', title: 'Complete the Form', desc: 'Fill in all required personal and background information accurately online.' },
-              { n: '02', title: 'Download Your Slip', desc: 'A personalised PDF registration slip is generated automatically for you.' },
-              { n: '03', title: 'Print & Present', desc: 'Print your slip and bring it to the official screening exercise venue.' },
-              { n: '04', title: 'Undergo Screening', desc: 'Attend physical, medical, and background assessment at the venue.' },
+              { n: '01', title: 'Fill the Form',        desc: 'Fill in all required fields on the registration form.' },
+              { n: '02', title: 'Complete Application', desc: 'Once done, click the "COMPLETE APPLICATION" button.' },
+              { n: '03', title: 'Review Your Details',  desc: 'A popup will appear — review all your details carefully.' },
+              { n: '04', title: 'Generate Your Form',   desc: 'Click "SUBMIT & GENERATE FORM" to download your Registration Form.' },
+              { n: '05', title: 'Print & Attend',       desc: 'Print the downloaded form and bring it to the screening exercise.' },
             ].map(step => (
-              <div key={step.n} style={s.step}>
-                <div style={s.stepBadge}>{step.n}</div>
-                <h4 style={s.stepTitle}>{step.title}</h4>
-                <p style={s.stepDesc}>{step.desc}</p>
+              <div key={step.n} className="bg-white border border-gray-200 rounded-lg px-5 py-6 shadow-sm">
+                <div className="inline-flex items-center justify-center w-11 h-11 bg-brand text-gold-bright text-[15px] font-extrabold rounded-full mb-3.5 font-display">
+                  {step.n}
+                </div>
+                <h4 className="font-display text-[15px] font-bold text-brand mb-2">{step.title}</h4>
+                <p className="text-[13.5px] text-gray-500 leading-[1.6] m-0">{step.desc}</p>
               </div>
             ))}
           </div>
         </Section>
 
         {/* ── IMPORTANT NOTICE ── */}
-        <div style={s.notice}>
-          <div style={s.noticeHeader}>
+        <div className="mt-12 bg-[#fff5f5] border-2 border-danger rounded-lg px-7 py-6 shadow-[0_2px_8px_rgba(192,57,43,0.12)]">
+          <div className="flex items-center gap-2.5 mb-4">
             <LuTriangleAlert size={22} color="#c0392b" />
-            <h3 style={s.noticeTitle}>IMPORTANT NOTICE</h3>
+            <h3 className="font-display text-lg font-bold text-danger m-0">IMPORTANT NOTICE</h3>
           </div>
-          <ul style={s.noticeList}>
+          <ul className="pl-5 m-0 flex flex-col gap-2.5 text-[15px] text-gray-800 leading-[1.7]">
             <li>This registration portal will close on <strong>{DEADLINE_DISPLAY}</strong>. Applications submitted after this date will <strong>NOT</strong> be accepted.</li>
             <li>This recruitment exercise is <strong>FREE OF CHARGE</strong> and is <strong>NOT FOR SALE</strong>.</li>
             <li>Do <strong>NOT</strong> pay money to any individual or agent claiming to process your application.</li>
@@ -163,25 +177,22 @@ export default function LandingPage() {
         </div>
 
         {/* ── CTA ── */}
-        <div style={s.ctaSection}>
+        <div className="mt-14 text-center py-12 border-t border-gray-300">
           <button
-            style={{
-              ...s.ctaBtn,
-              fontSize: '18px',
-              padding: '18px 56px',
-              ...(isPortalClosed ? s.ctaBtnClosed : {}),
-            }}
+            className={`inline-flex items-center gap-2 px-14 py-5 text-lg font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
+              isPortalClosed
+                ? 'bg-gray-500 border-gray-500 text-white cursor-not-allowed shadow-none'
+                : 'bg-brand-mid border-brand-mid text-white shadow-[0_4px_16px_rgba(26,107,26,0.35)] hover:shadow-[0_8px_28px_rgba(26,107,26,0.45)] cursor-pointer'
+            }`}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}
           >
             {isPortalClosed ? 'REGISTRATION CLOSED' : (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-                PROCEED TO REGISTER <LuArrowRight size={18} />
-              </span>
+              <><span>PROCEED TO REGISTER</span><LuArrowRight size={18} /></>
             )}
           </button>
           {!isPortalClosed && (
-            <p style={s.ctaNote}>
+            <p className="mt-3.5 text-[13px] text-gray-500">
               Registration closes on {DEADLINE_DISPLAY}. Complete your application before the deadline.
             </p>
           )}
@@ -190,13 +201,15 @@ export default function LandingPage() {
       </main>
 
       {/* ── FOOTER ── */}
-      <footer style={s.footer}>
-        <div style={s.footerInner}>
-          <p style={s.footerLine}>Oyo State Security Network | Operation Amotekun</p>
-          <p style={s.footerLine}>
+      <footer className="bg-brand border-t-4 border-gold">
+        <div className="max-w-[1100px] mx-auto px-6 py-7 text-center">
+          <p className="text-[#ccc] text-[13px] my-1">
+            Oyo State Security Network Agency and Amotekun Corps
+          </p>
+          <p className="text-[#ccc] text-[13px] my-1">
             © {new Date().getFullYear()} Government of Oyo State. All rights reserved.
           </p>
-          <p style={{ ...s.footerLine, color: '#aaa', marginTop: '8px', fontSize: '12px' }}>
+          <p className="text-[#aaa] text-[12px] mt-2">
             This is an official government portal. Unauthorised access or misuse is prohibited.
           </p>
         </div>
@@ -207,327 +220,12 @@ export default function LandingPage() {
 
 function Section({ title, children }) {
   return (
-    <section style={s.section}>
-      <div style={s.sectionHeader}>
-        <h3 style={s.sectionTitle}>{title}</h3>
-        <div style={s.sectionRule} />
+    <section className="mt-14 md:mt-20">
+      <div className="mb-7">
+        <h3 className="font-display text-[22px] font-bold text-brand mb-2.5">{title}</h3>
+        <div className="h-[3px] w-[60px] bg-gold rounded-sm" />
       </div>
       {children}
     </section>
   )
-}
-
-/* ─── STYLES ─── */
-const s = {
-  page: {
-    fontFamily: 'var(--font-body, Inter, sans-serif)',
-    color: '#1a1a1a',
-    backgroundColor: '#f4f6f4',
-    lineHeight: '1.7',
-  },
-
-  /* Header */
-  header: {
-    backgroundColor: '#0f4c0f',
-    color: '#fff',
-  },
-  headerInner: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '24px 40px',
-    maxWidth: '1100px',
-    margin: '0 auto',
-    gap: '20px',
-  },
-  headerCenter: {
-    textAlign: 'center',
-    flex: 1,
-  },
-  headerSupra: {
-    fontSize: '11px',
-    letterSpacing: '0.15em',
-    fontWeight: '600',
-    color: '#c8960c',
-    margin: '0 0 4px 0',
-    textTransform: 'uppercase',
-  },
-  headerTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '26px',
-    fontWeight: '900',
-    margin: '0 0 4px 0',
-    lineHeight: '1.2',
-    letterSpacing: '0.02em',
-  },
-  headerSub: {
-    fontSize: '13px',
-    letterSpacing: '0.12em',
-    color: '#ffc107',
-    margin: 0,
-    fontWeight: '600',
-    textTransform: 'uppercase',
-  },
-  logoWrap: {
-    width: '80px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-  },
-  logo: {
-    maxWidth: '80px',
-    maxHeight: '80px',
-    objectFit: 'contain',
-  },
-  headerStripe: {
-    height: '5px',
-    background: 'linear-gradient(90deg, #c8960c 0%, #ffc107 50%, #c8960c 100%)',
-  },
-
-  /* Hero */
-  hero: {
-    position: 'relative',
-    background: 'linear-gradient(135deg, #0f4c0f 0%, #1a6b1a 55%, #246b24 100%)',
-    padding: '80px 24px',
-    textAlign: 'center',
-    overflow: 'hidden',
-  },
-  heroOverlay: {
-    position: 'absolute',
-    inset: 0,
-    backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(200,150,12,0.12) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%)',
-    pointerEvents: 'none',
-  },
-  heroContent: {
-    position: 'relative',
-    maxWidth: '760px',
-    margin: '0 auto',
-  },
-  heroEyebrow: {
-    fontSize: '11px',
-    letterSpacing: '0.2em',
-    color: '#ffc107',
-    fontWeight: '700',
-    margin: '0 0 18px 0',
-    textTransform: 'uppercase',
-  },
-  heroTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: 'clamp(28px, 5vw, 48px)',
-    fontWeight: '900',
-    color: '#fff',
-    margin: '0 0 22px 0',
-    lineHeight: '1.15',
-    letterSpacing: '0.02em',
-  },
-  heroDesc: {
-    fontSize: '17px',
-    color: 'rgba(255,255,255,0.85)',
-    margin: '0 auto 36px',
-    maxWidth: '600px',
-    lineHeight: '1.7',
-  },
-
-  /* Notice Band */
-  noticeBand: {
-    backgroundColor: '#7f1d1d',
-    padding: '10px 20px',
-    textAlign: 'center',
-  },
-  noticeBandText: {
-    color: '#fff',
-    fontSize: '13px',
-    fontWeight: '500',
-    letterSpacing: '0.02em',
-  },
-
-  /* Main content */
-  main: {
-    maxWidth: '1000px',
-    margin: '0 auto',
-    padding: '0 24px 60px',
-  },
-
-  /* Sections */
-  section: {
-    marginTop: '56px',
-  },
-  sectionHeader: {
-    marginBottom: '28px',
-  },
-  sectionTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '22px',
-    fontWeight: '700',
-    color: '#0f4c0f',
-    margin: '0 0 10px 0',
-  },
-  sectionRule: {
-    height: '3px',
-    width: '60px',
-    backgroundColor: '#c8960c',
-    borderRadius: '2px',
-  },
-  bodyText: {
-    fontSize: '15.5px',
-    color: '#333',
-    marginBottom: '14px',
-    lineHeight: '1.8',
-  },
-
-  /* Eligibility */
-  eligGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '12px',
-  },
-  eligCard: {
-    display: 'flex',
-    alignItems: 'flex-start',
-    gap: '14px',
-    backgroundColor: '#fff',
-    border: '1px solid #d6e8d6',
-    borderLeft: '4px solid #1a6b1a',
-    borderRadius: '6px',
-    padding: '16px 18px',
-    boxShadow: '0 1px 4px rgba(0,0,0,0.06)',
-  },
-  eligIcon: {
-    fontSize: '20px',
-    flexShrink: 0,
-    marginTop: '1px',
-  },
-  eligText: {
-    fontSize: '15px',
-    color: '#1a1a1a',
-    fontWeight: '500',
-  },
-
-  /* Steps */
-  stepsRow: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-    gap: '16px',
-  },
-  step: {
-    backgroundColor: '#fff',
-    border: '1px solid #e0e0e0',
-    borderRadius: '8px',
-    padding: '24px 20px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
-  },
-  stepBadge: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '44px',
-    height: '44px',
-    backgroundColor: '#0f4c0f',
-    color: '#ffc107',
-    fontSize: '15px',
-    fontWeight: '800',
-    borderRadius: '50%',
-    marginBottom: '14px',
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-  },
-  stepTitle: {
-    fontSize: '15px',
-    fontWeight: '700',
-    color: '#0f4c0f',
-    marginBottom: '8px',
-    margin: '0 0 8px 0',
-  },
-  stepDesc: {
-    fontSize: '13.5px',
-    color: '#555',
-    lineHeight: '1.6',
-    margin: 0,
-  },
-
-  /* Important Notice */
-  notice: {
-    marginTop: '48px',
-    backgroundColor: '#fff5f5',
-    border: '2px solid #c0392b',
-    borderRadius: '8px',
-    padding: '24px 28px',
-    boxShadow: '0 2px 8px rgba(192,57,43,0.12)',
-  },
-  noticeHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-    marginBottom: '16px',
-  },
-  noticeIcon: {
-    fontSize: '22px',
-    color: '#c0392b',
-  },
-  noticeTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#c0392b',
-    margin: 0,
-  },
-  noticeList: {
-    paddingLeft: '20px',
-    margin: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '10px',
-  },
-
-  /* CTA */
-  ctaSection: {
-    marginTop: '56px',
-    textAlign: 'center',
-    padding: '48px 0',
-    borderTop: '1px solid #ddd',
-  },
-  ctaBtn: {
-    display: 'inline-block',
-    padding: '16px 48px',
-    fontSize: '16px',
-    fontWeight: '700',
-    color: '#fff',
-    backgroundColor: '#1a6b1a',
-    border: '2px solid #1a6b1a',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    letterSpacing: '0.06em',
-    textTransform: 'uppercase',
-    transition: 'background-color 0.2s, transform 0.1s',
-    boxShadow: '0 4px 16px rgba(26,107,26,0.35)',
-    fontFamily: 'var(--font-body, Inter, sans-serif)',
-  },
-  ctaBtnClosed: {
-    backgroundColor: '#888',
-    borderColor: '#888',
-    cursor: 'not-allowed',
-    boxShadow: 'none',
-  },
-  ctaNote: {
-    marginTop: '14px',
-    fontSize: '13px',
-    color: '#666',
-  },
-
-  /* Footer */
-  footer: {
-    backgroundColor: '#0f4c0f',
-    borderTop: '4px solid #c8960c',
-  },
-  footerInner: {
-    maxWidth: '1100px',
-    margin: '0 auto',
-    padding: '28px 24px',
-    textAlign: 'center',
-  },
-  footerLine: {
-    color: '#ccc',
-    fontSize: '13px',
-    margin: '4px 0',
-  },
 }

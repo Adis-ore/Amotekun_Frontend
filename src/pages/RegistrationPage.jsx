@@ -22,52 +22,68 @@ export default function RegistrationPage() {
   }
 
   return (
-    <div style={s.page}>
+    <div className="font-sans bg-[#f4f6f4] text-gray-900 min-h-screen flex flex-col">
 
       {/* ── HEADER ── */}
-      <header style={s.header}>
-        <div style={s.headerInner}>
-          <div style={s.logoWrap}>
-            <img
-              src="/OyoLogo.png"
-              alt="Oyo State"
-              style={s.logo}
-            />
+      <header className="bg-brand border-b-[5px] border-gold">
+        <div className="flex items-center w-full px-6 md:px-10 py-4 md:py-5 flex-wrap md:flex-nowrap justify-between gap-2">
+
+          {/* Col 1: Oyo Logo */}
+          <div className="flex-none md:flex-1 flex justify-start items-center">
+            <img src="/OyoLogo.png" alt="Oyo State" className="w-14 h-14 md:w-[70px] md:h-[70px] object-contain" />
           </div>
-          <div style={s.headerCenter}>
-            <p style={s.headerSupra}>GOVERNMENT OF OYO STATE</p>
-            <h1 style={s.headerTitle}>AMOTEKUN CORPS RECRUITMENT</h1>
-            <p style={s.headerSub}>Online Registration Portal | 2026</p>
+
+          {/* Col 2: Center text */}
+          <div className="order-last md:order-none w-full md:flex-1 flex flex-col items-center text-center py-1 md:py-0">
+            <p className="text-[10px] md:text-[11px] tracking-[0.15em] font-semibold text-white/70 uppercase mb-1">
+              GOVERNMENT OF OYO STATE
+            </p>
+            <h1 className="font-display text-sm md:text-[22px] font-black leading-tight tracking-[0.02em] text-white">
+              OYO STATE SECURITY NETWORK AGENCY
+            </h1>
+            <p className="text-[11px] md:text-[13px] tracking-[0.08em] text-white/80 font-medium mt-1">
+              Online Registration Portal | 2026
+            </p>
           </div>
-          <div style={s.logoWrap}>
-            <img
-              src="/amo.jpg"
-              alt="Amotekun"
-              style={s.logo}
-            />
+
+          {/* Col 3: Amotekun Logo */}
+          <div className="flex-none md:flex-1 flex justify-end items-center">
+            <img src="/amo.jpg" alt="Amotekun Corps" className="w-14 h-14 md:w-[70px] md:h-[70px] object-contain" />
           </div>
+
         </div>
-        <div style={s.headerStripe} />
       </header>
 
       {/* ── BREADCRUMB ── */}
-      <div style={s.breadcrumb}>
-        <span style={s.breadcrumbLink} onClick={() => navigate('/')}>Home</span>
-        <span style={s.breadcrumbSep}> › </span>
+      <div className="bg-white border-b border-gray-200 px-6 py-2.5 text-[13px] text-gray-500">
+        <span
+          className="text-brand-mid cursor-pointer font-semibold underline hover:text-brand transition-colors"
+          onClick={() => navigate('/')}
+        >
+          Home
+        </span>
+        <span className="mx-1.5 text-gray-400"> › </span>
         <span>Registration Form</span>
       </div>
 
       {/* ── SUCCESS BANNER ── */}
       {successData && (
-        <div style={s.successBanner}>
-          <div style={s.successIcon}><LuCircleCheck size={28} color="#fff" /></div>
-          <div style={s.successBody}>
-            <h2 style={s.successTitle}>Registration Submitted | Form No: {successData.formNo}</h2>
-            <p style={s.successText}>
-              Your registration slip has been downloaded automatically. Please <strong>print it</strong> and bring it
-              to the official Amotekun screening exercise venue.
+        <div
+          className="flex gap-5 items-start bg-[#f0faf0] border-2 border-brand-mid rounded-lg px-7 py-6 mx-auto my-6 max-w-[860px] w-full"
+          style={{ animation: 'slideDown 0.3s ease-out' }}
+        >
+          <div className="w-12 h-12 shrink-0 bg-brand-mid text-white rounded-full flex items-center justify-center">
+            <LuCircleCheck size={28} color="#fff" />
+          </div>
+          <div className="flex-1">
+            <h2 className="font-display text-lg font-bold text-brand mb-2.5">
+              Registration Submitted | Form No: {successData.formNo}
+            </h2>
+            <p className="text-sm text-gray-700 my-1.5">
+              Your Registration Form has been downloaded automatically. Please <strong>print it</strong> and bring it
+              to the official Amotekun Corps screening exercise venue.
             </p>
-            <p style={s.successText}>
+            <p className="text-sm text-gray-700 my-1.5">
               <strong>Keep your form number safe:</strong> {successData.formNo}
             </p>
           </div>
@@ -76,24 +92,24 @@ export default function RegistrationPage() {
 
       {/* ── PORTAL CLOSED BANNER ── */}
       {isPortalClosed && (
-        <div style={s.closedBanner}>
-          <strong style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+        <div className="bg-[#7f1d1d] text-white px-6 py-4 text-center text-[15px]">
+          <strong className="inline-flex items-center gap-2">
             <LuBan size={18} /> REGISTRATION PORTAL CLOSED
           </strong>
-          <p style={{ margin: '8px 0 0', fontSize: '14px' }}>
+          <p className="mt-2 text-sm">
             The registration period has ended. No new applications are being accepted.
           </p>
         </div>
       )}
 
       {/* ── FORM AREA ── */}
-      <div style={s.formWrap}>
-        <div style={s.formCard}>
+      <div className="flex-1 max-w-[880px] w-full mx-auto px-4 md:px-6 pt-6 pb-16">
+        <div className="bg-white rounded-lg shadow-[0_2px_16px_rgba(0,0,0,0.08)] overflow-hidden">
           {!successData && (
-            <div style={s.formCardHeader}>
-              <h2 style={s.formCardTitle}>Application Form</h2>
-              <p style={s.formCardNote}>
-                Fields marked <span style={{ color: '#c0392b' }}>*</span> are required.
+            <div className="bg-[#f9faf9] border-b border-gray-200 px-6 md:px-8 py-6">
+              <h2 className="font-display text-xl font-bold text-brand mb-2">Application Form</h2>
+              <p className="text-[13.5px] text-gray-500 m-0">
+                Fields marked <span className="text-danger">*</span> are required.
                 Ensure all information is accurate before submitting.
               </p>
             </div>
@@ -107,153 +123,17 @@ export default function RegistrationPage() {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer style={s.footer}>
-        <div style={s.footerInner}>
-          <p style={s.footerLine}>Oyo State Security Network | Operation Amotekun</p>
-          <p style={s.footerLine}>
+      <footer className="bg-brand border-t-4 border-gold mt-auto">
+        <div className="max-w-[1100px] mx-auto px-6 py-5 text-center">
+          <p className="text-[#ccc] text-[13px] my-1">
+            Oyo State Security Network Agency and Amotekun Corps
+          </p>
+          <p className="text-[#ccc] text-[13px] my-1">
             © {new Date().getFullYear()} Government of Oyo State. All rights reserved.
           </p>
         </div>
       </footer>
+
     </div>
   )
-}
-
-const s = {
-  page: {
-    fontFamily: 'var(--font-body, Inter, sans-serif)',
-    backgroundColor: '#f4f6f4',
-    color: '#1a1a1a',
-    minHeight: '100vh',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  /* Header — same as LandingPage */
-  header: {
-    backgroundColor: '#0f4c0f',
-    color: '#fff',
-  },
-  headerInner: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    padding: '20px 40px',
-    maxWidth: '1100px',
-    margin: '0 auto',
-    gap: '20px',
-  },
-  headerCenter: { textAlign: 'center', flex: 1 },
-  headerSupra: {
-    fontSize: '11px', letterSpacing: '0.15em', fontWeight: '600',
-    color: '#c8960c', margin: '0 0 4px 0', textTransform: 'uppercase',
-  },
-  headerTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '22px', fontWeight: '900', margin: '0 0 4px 0', lineHeight: '1.2',
-  },
-  headerSub: {
-    fontSize: '13px', letterSpacing: '0.08em', color: '#ffc107',
-    margin: 0, fontWeight: '500',
-  },
-  logoWrap: {
-    width: '70px', display: 'flex', alignItems: 'center',
-    justifyContent: 'center', flexShrink: 0,
-  },
-  logo: { maxWidth: '70px', maxHeight: '70px', objectFit: 'contain' },
-  headerStripe: {
-    height: '4px',
-    background: 'linear-gradient(90deg, #c8960c 0%, #ffc107 50%, #c8960c 100%)',
-  },
-
-  /* Breadcrumb */
-  breadcrumb: {
-    backgroundColor: '#fff',
-    borderBottom: '1px solid #e0e0e0',
-    padding: '10px 24px',
-    fontSize: '13px',
-    color: '#555',
-    maxWidth: '100%',
-  },
-  breadcrumbLink: {
-    color: '#1a6b1a',
-    cursor: 'pointer',
-    fontWeight: '600',
-    textDecoration: 'underline',
-  },
-  breadcrumbSep: { margin: '0 6px', color: '#aaa' },
-
-  /* Success */
-  successBanner: {
-    display: 'flex',
-    gap: '20px',
-    alignItems: 'flex-start',
-    backgroundColor: '#f0faf0',
-    border: '2px solid #1a6b1a',
-    borderRadius: '8px',
-    padding: '24px 28px',
-    margin: '24px auto',
-    maxWidth: '860px',
-    animation: 'slideDown 0.3s ease-out',
-  },
-  successIcon: {
-    width: '48px', height: '48px', flexShrink: 0,
-    backgroundColor: '#1a6b1a', color: '#fff',
-    borderRadius: '50%', display: 'flex',
-    alignItems: 'center', justifyContent: 'center',
-    fontSize: '24px', fontWeight: '700',
-  },
-  successBody: { flex: 1 },
-  successTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '18px', fontWeight: '700', color: '#0f4c0f',
-    margin: '0 0 10px 0',
-  },
-  successText: { fontSize: '14px', color: '#333', margin: '6px 0' },
-
-  /* Closed banner */
-  closedBanner: {
-    backgroundColor: '#7f1d1d',
-    color: '#fff',
-    padding: '18px 24px',
-    textAlign: 'center',
-    fontSize: '15px',
-  },
-
-  /* Form wrap */
-  formWrap: {
-    flex: 1,
-    maxWidth: '880px',
-    width: '100%',
-    margin: '0 auto',
-    padding: '24px 24px 60px',
-  },
-  formCard: {
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    boxShadow: '0 2px 16px rgba(0,0,0,0.08)',
-    overflow: 'hidden',
-  },
-  formCardHeader: {
-    backgroundColor: '#f9faf9',
-    borderBottom: '1px solid #e8e8e8',
-    padding: '24px 32px',
-  },
-  formCardTitle: {
-    fontFamily: 'var(--font-heading, Merriweather, Georgia, serif)',
-    fontSize: '20px', fontWeight: '700', color: '#0f4c0f', margin: '0 0 8px 0',
-  },
-  formCardNote: { fontSize: '13.5px', color: '#666', margin: 0 },
-
-  /* Footer */
-  footer: {
-    backgroundColor: '#0f4c0f',
-    borderTop: '4px solid #c8960c',
-    marginTop: 'auto',
-  },
-  footerInner: {
-    maxWidth: '1100px', margin: '0 auto',
-    padding: '20px 24px', textAlign: 'center',
-  },
-  footerLine: { color: '#ccc', fontSize: '13px', margin: '4px 0' },
 }

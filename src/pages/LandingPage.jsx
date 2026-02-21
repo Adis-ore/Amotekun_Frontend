@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import CountdownBanner from '../components/CountdownBanner'
-import { LuHouse, LuCalendar, LuShield, LuCheck, LuTriangleAlert, LuArrowRight } from 'react-icons/lu'
+import { LuHouse, LuCalendar, LuShield, LuCheck, LuTriangleAlert, LuArrowRight, LuClipboardList } from 'react-icons/lu'
 
 const PORTAL_LAUNCH_DATE = new Date('2026-02-19')
 const DEADLINE = new Date(PORTAL_LAUNCH_DATE)
@@ -74,7 +74,7 @@ export default function LandingPage() {
           </h2>
           <p className="text-[17px] text-white/85 mb-9 max-w-[560px] mx-auto leading-[1.8]">
             Join the frontline of community security across all 33 local government areas of Oyo State.
-            Applications are open to qualified indigenes aged 18–50.
+            Applications are open to qualified indigenes aged 25–50.
           </p>
           <button
             className={`inline-flex items-center gap-2 px-12 py-4 text-base font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
@@ -124,12 +124,35 @@ export default function LandingPage() {
           </p>
         </Section>
 
+        {/* ── RECRUITMENT CRITERIA ── */}
+        <div className="mt-14 bg-[#fffdf0] border-2 border-[#c9a84c] rounded-lg px-7 py-6 shadow-[0_2px_8px_rgba(201,168,76,0.15)]">
+          <div className="flex items-center gap-2.5 mb-3">
+            <LuClipboardList size={22} color="#7a5000" />
+            <h3 className="font-display text-lg font-bold text-[#7a5000] m-0">RECRUITMENT CRITERIA</h3>
+          </div>
+          <p className="text-[12.5px] font-semibold text-[#7a5000] uppercase tracking-[0.05em] mb-4">
+            For interested prospective applicants to note — this will be rigidly observed.
+          </p>
+          <ol className="flex flex-col gap-3 pl-0 m-0">
+            {[
+              'Age range approved by the Board is 25 to 50 years.',
+              'Only seasoned hunters are eligible for recruitment.',
+              'Successful applicants are to be deployed ONLY to forest resources within their Local Government Areas.',
+            ].map((criterion, i) => (
+              <li key={i} className="flex items-start gap-3 text-[15px] text-gray-800 list-none">
+                <span className="shrink-0 w-6 h-6 flex items-center justify-center bg-[#c9a84c] text-white text-[11px] font-bold rounded-full mt-0.5">{i + 1}</span>
+                <span className="leading-[1.7]">{criterion}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         {/* ── ELIGIBILITY ── */}
         <Section title="Eligibility Requirements">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
               { Icon: LuHouse,    text: 'Must be an Oyo State indigene' },
-              { Icon: LuCalendar, text: 'Must be between 18 and 50 years of age' },
+              { Icon: LuCalendar, text: 'Must be between 25 and 50 years of age' },
               { Icon: LuShield,   text: 'Must be physically and medically fit' },
               { Icon: LuCheck,    text: 'Must be of good character and conduct' },
             ].map(({ Icon, text }) => (

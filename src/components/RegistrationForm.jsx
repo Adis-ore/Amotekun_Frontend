@@ -16,10 +16,10 @@ const OYO_LGAS = [
   'Saki West', 'Surulere',
 ]
 
-/* Age: 18 – 50 years, computed dynamically */
+/* Age: 25 – 50 years, computed dynamically */
 function getDateLimits() {
   const today = new Date()
-  const max = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate())
+  const max = new Date(today.getFullYear() - 25, today.getMonth(), today.getDate())
   const min = new Date(today.getFullYear() - 50, today.getMonth(), today.getDate())
   return {
     max: max.toISOString().split('T')[0],
@@ -126,13 +126,16 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
       if (!res.ok) {
         const data = await res.json()
-        throw new Error(data.error || 'Registration failed. Please try again.')
+        const msg = data.fields?.length
+          ? `${data.error}: ${data.fields.join(', ')}`
+          : (data.error || 'Registration failed. Please try again.')
+        throw new Error(msg)
       }
 
       const pdfBlob = await res.blob()
       const disposition = res.headers.get('Content-Disposition') || ''
-      const match = disposition.match(/filename="Amotekun-(AMO-\d+)\.pdf"/)
-      const formNo = match ? match[1] : 'AMO-XXXX'
+      const match = disposition.match(/filename="Amotekun-(AMOE \d+)\.pdf"/)
+      const formNo = match ? match[1] : 'AMOE XXXX'
 
       const blobUrl = URL.createObjectURL(pdfBlob)
       const safeName = formData.fullName.trim().replace(/\s+/g, '_')
@@ -260,7 +263,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
                 disabled={isSubmitting}
               />
               <small className="block text-[12px] text-gray-500 mt-1">
-                Applicant must be between 18 and 50 years old.
+                Applicant must be between 25 and 50 years old.
               </small>
             </Field>
 

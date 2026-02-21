@@ -126,6 +126,11 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
       if (!res.ok) {
         const data = await res.json()
+        if (res.status === 503) {
+          throw new Error(
+            'The server is currently busy due to high demand. Please wait 30 seconds and try again. Your details have NOT been submitted.'
+          )
+        }
         const msg = data.fields?.length
           ? `${data.error}: ${data.fields.join(', ')}`
           : (data.error || 'Registration failed. Please try again.')
@@ -148,6 +153,9 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
       setPdfBlobUrl(blobUrl)
       onSuccess(formNo)
+
+      // Free the blob from memory after 10 s (print button may still be visible briefly)
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 10000)
     } catch (err) {
       setSubmitError(err.message)
     } finally {

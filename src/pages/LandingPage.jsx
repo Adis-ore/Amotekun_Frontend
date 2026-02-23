@@ -56,13 +56,13 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <section
         className="relative min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #0d2b0d 0%, #0f4c0f 50%, #1a6b1a 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #003D24 0%, #006B3F 50%, #007A47 100%)' }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 20% 80%, rgba(201,168,76,0.12) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%)',
+              'radial-gradient(circle at 20% 80%, rgba(253,185,19,0.12) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%)',
           }}
         />
         <div className="relative max-w-[760px] mx-auto">
@@ -80,7 +80,7 @@ export default function LandingPage() {
             className={`inline-flex items-center gap-2 px-12 py-4 text-base font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
               isPortalClosed
                 ? 'bg-gray-500 border-gray-500 text-white cursor-not-allowed shadow-none'
-                : 'bg-gold-bright border-gold-bright text-gray-900 shadow-[0_4px_20px_rgba(255,193,7,0.45)] hover:shadow-[0_8px_28px_rgba(255,193,7,0.6)] cursor-pointer'
+                : 'bg-gold-bright border-gold-bright text-gray-900 shadow-[0_4px_20px_rgba(253,185,19,0.45)] hover:shadow-[0_8px_28px_rgba(253,185,19,0.6)] cursor-pointer'
             }`}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}
@@ -125,12 +125,12 @@ export default function LandingPage() {
         </Section>
 
         {/* ── RECRUITMENT CRITERIA ── */}
-        <div className="mt-14 bg-[#fffdf0] border-2 border-[#c9a84c] rounded-lg px-7 py-6 shadow-[0_2px_8px_rgba(201,168,76,0.15)]">
+        <div className="mt-14 bg-[#FFF9E0] border-2 border-[#FDB913] rounded-lg px-7 py-6 shadow-[0_2px_8px_rgba(253,185,19,0.15)]">
           <div className="flex items-center gap-2.5 mb-3">
-            <LuClipboardList size={22} color="#7a5000" />
-            <h3 className="font-display text-lg font-bold text-[#7a5000] m-0">RECRUITMENT CRITERIA</h3>
+            <LuClipboardList size={22} color="#8B6914" />
+            <h3 className="font-display text-lg font-bold text-[#8B6914] m-0">RECRUITMENT CRITERIA</h3>
           </div>
-          <p className="text-[12.5px] font-semibold text-[#7a5000] uppercase tracking-[0.05em] mb-4">
+          <p className="text-[12.5px] font-semibold text-[#8B6914] uppercase tracking-[0.05em] mb-4">
             For interested prospective applicants to note — this will be rigidly observed.
           </p>
           <ol className="flex flex-col gap-3 pl-0 m-0">
@@ -140,7 +140,7 @@ export default function LandingPage() {
               'Successful applicants are to be deployed ONLY to forest resources within their Local Government Areas.',
             ].map((criterion, i) => (
               <li key={i} className="flex items-start gap-3 text-[15px] text-gray-800 list-none">
-                <span className="shrink-0 w-6 h-6 flex items-center justify-center bg-[#c9a84c] text-white text-[11px] font-bold rounded-full mt-0.5">{i + 1}</span>
+                <span className="shrink-0 w-6 h-6 flex items-center justify-center bg-[#FDB913] text-white text-[11px] font-bold rounded-full mt-0.5">{i + 1}</span>
                 <span className="leading-[1.7]">{criterion}</span>
               </li>
             ))}
@@ -156,8 +156,8 @@ export default function LandingPage() {
               { Icon: LuShield,   text: 'Must be physically and medically fit' },
               { Icon: LuCheck,    text: 'Must be of good character and conduct' },
             ].map(({ Icon, text }) => (
-              <div key={text} className="flex items-start gap-3.5 bg-white border border-[#d6e8d6] border-l-4 border-l-brand-mid rounded-md px-4 py-4 shadow-sm">
-                <span className="shrink-0 mt-0.5"><Icon size={20} color="#1a6b1a" /></span>
+              <div key={text} className="flex items-start gap-3.5 bg-white border border-[#C5E0D0] border-l-4 border-l-brand-mid rounded-md px-4 py-4 shadow-sm">
+                <span className="shrink-0 mt-0.5"><Icon size={20} color="#007A47" /></span>
                 <span className="text-[15px] text-gray-900 font-medium">{text}</span>
               </div>
             ))}
@@ -205,7 +205,7 @@ export default function LandingPage() {
             className={`inline-flex items-center gap-2 px-14 py-5 text-lg font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
               isPortalClosed
                 ? 'bg-gray-500 border-gray-500 text-white cursor-not-allowed shadow-none'
-                : 'bg-brand-mid border-brand-mid text-white shadow-[0_4px_16px_rgba(26,107,26,0.35)] hover:shadow-[0_8px_28px_rgba(26,107,26,0.45)] cursor-pointer'
+                : 'bg-brand-mid border-brand-mid text-white shadow-[0_4px_16px_rgba(0,107,63,0.35)] hover:shadow-[0_8px_28px_rgba(0,107,63,0.45)] cursor-pointer'
             }`}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}

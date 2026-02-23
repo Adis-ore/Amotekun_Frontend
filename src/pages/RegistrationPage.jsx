@@ -69,7 +69,7 @@ export default function RegistrationPage() {
       {/* ── SUCCESS BANNER ── */}
       {successData && (
         <div
-          className="flex gap-5 items-start bg-[#f0faf0] border-2 border-brand-mid rounded-lg px-7 py-6 mx-auto my-6 max-w-[860px] w-full"
+          className="flex gap-5 items-start bg-[#E6F5EE] border-2 border-brand-mid rounded-lg px-7 py-6 mx-auto my-6 max-w-[860px] w-full"
           style={{ animation: 'slideDown 0.3s ease-out' }}
         >
           <div className="w-12 h-12 shrink-0 bg-brand-mid text-white rounded-full flex items-center justify-center">
@@ -106,7 +106,7 @@ export default function RegistrationPage() {
       <div className="flex-1 max-w-[880px] w-full mx-auto px-4 md:px-6 pt-6 pb-16">
         <div className="bg-white rounded-lg shadow-[0_2px_16px_rgba(0,0,0,0.08)] overflow-hidden">
           {!successData && (
-            <div className="bg-[#f9faf9] border-b border-gray-200 px-6 md:px-8 py-6">
+            <div className="bg-[#F0F7F3] border-b border-gray-200 px-6 md:px-8 py-6">
               <h2 className="font-display text-xl font-bold text-brand mb-2">Application Form</h2>
               <p className="text-[13.5px] text-gray-500 m-0">
                 Fields marked <span className="text-danger">*</span> are required.

@@ -355,7 +355,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
           </Field>
 
           {formData.hasSecurityExp === 'Yes' && (
-            <div className="bg-[#f5faf5] border border-[#c3dfc3] rounded-md px-5 py-5 mt-1 flex flex-col gap-4">
+            <div className="bg-[#E8F5EE] border border-[#B3D9C4] rounded-md px-5 py-5 mt-1 flex flex-col gap-4">
               <Field label="Name of Organisation / Security Agency">
                 <input
                   type="text"
@@ -458,8 +458,8 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
         {/* 5. DECLARATION */}
         <FormSection title="5. Declaration">
           <label
-            className={`flex gap-3.5 items-start cursor-pointer p-4 bg-[#f9faf9] border rounded-lg transition-colors ${
-              errors.declaration ? 'border-danger' : 'border-[#d6e8d6]'
+            className={`flex gap-3.5 items-start cursor-pointer p-4 bg-[#F0F7F3] border rounded-lg transition-colors ${
+              errors.declaration ? 'border-danger' : 'border-[#C5E0D0]'
             }`}
             data-error={!!errors.declaration}
           >
@@ -494,7 +494,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 bg-brand text-white border-none rounded text-[15px] font-bold cursor-pointer tracking-[0.05em] uppercase transition-all duration-200 hover:bg-brand-dark hover:-translate-y-0.5 shadow-[0_3px_12px_rgba(15,76,15,0.3)] hover:shadow-[0_6px_20px_rgba(15,76,15,0.4)] active:translate-y-0 disabled:opacity-75 disabled:cursor-not-allowed"
+            className="w-full py-4 bg-brand text-white border-none rounded text-[15px] font-bold cursor-pointer tracking-[0.05em] uppercase transition-all duration-200 hover:bg-brand-dark hover:-translate-y-0.5 shadow-[0_3px_12px_rgba(0,107,63,0.3)] hover:shadow-[0_6px_20px_rgba(0,107,63,0.4)] active:translate-y-0 disabled:opacity-75 disabled:cursor-not-allowed"
           >
             COMPLETE APPLICATION
           </button>
@@ -521,7 +521,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
               </p>
 
               {/* Two-column review grid */}
-              <div className="flex flex-col border border-[#e0e8e0] rounded-lg overflow-hidden mb-5">
+              <div className="flex flex-col border border-[#C5DFD1] rounded-lg overflow-hidden mb-5">
                 <ReviewRow label="Full Name"           value={formData.fullName} />
                 <ReviewRow label="Phone Number"        value={formData.phoneNumber} />
                 <ReviewRow label="Date of Birth"       value={formData.dateOfBirth} />
@@ -541,7 +541,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
                 )}
               </div>
 
-              <p className="text-[12.5px] text-[#7a5000] bg-[#fffbeb] border border-[#f0d080] rounded px-3.5 py-2.5 mb-6">
+              <p className="text-[12.5px] text-[#8B6914] bg-[#FFF9E0] border border-[#FDE68A] rounded px-3.5 py-2.5 mb-6">
                 By confirming, you declare that all information provided is true and accurate.
               </p>
 
@@ -555,7 +555,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
                 </button>
                 <button
                   type="button"
-                  className="px-5 py-2.5 bg-brand text-white border-none rounded text-sm font-bold cursor-pointer tracking-[0.03em] hover:bg-brand-dark transition-colors shadow-[0_3px_10px_rgba(15,76,15,0.3)] min-h-[44px]"
+                  className="px-5 py-2.5 bg-brand text-white border-none rounded text-sm font-bold cursor-pointer tracking-[0.03em] hover:bg-brand-dark transition-colors shadow-[0_3px_10px_rgba(0,107,63,0.3)] min-h-[44px]"
                   onClick={handleConfirmedSubmit}
                 >
                   SUBMIT &amp; GENERATE FORM
@@ -572,7 +572,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
       {isSubmitting && (
         <div
           className="fixed inset-0 flex flex-col items-center justify-center z-[2000]"
-          style={{ backgroundColor: 'rgba(13,43,13,0.93)' }}
+          style={{ backgroundColor: 'rgba(0,61,36,0.93)' }}
         >
           <div className="bg-white rounded-2xl px-10 py-10 flex flex-col items-center gap-5 shadow-2xl max-w-sm w-full mx-4 text-center">
             <div className="w-12 h-12 border-4 border-gray-200 border-t-brand rounded-full animate-spin" />
@@ -589,7 +589,7 @@ export default function RegistrationForm({ onSuccess, isPortalClosed, submitted 
 
 function ReviewRow({ label, value }) {
   return (
-    <div className="flex justify-between items-start gap-3 px-3.5 py-2.5 bg-white border-b border-[#e8f0e8] last:border-b-0">
+    <div className="flex justify-between items-start gap-3 px-3.5 py-2.5 bg-white border-b border-[#C5DFD1] last:border-b-0">
       <span className="text-[12.5px] font-semibold text-gray-500 shrink-0 min-w-[130px]">{label}</span>
       <span className="text-[13px] text-gray-900 text-right break-words font-medium">{value || '—'}</span>
     </div>
@@ -599,7 +599,7 @@ function ReviewRow({ label, value }) {
 function FormSection({ title, children }) {
   return (
     <div className="border-b border-gray-200">
-      <div className="bg-[#f3f7f3] border-b border-[#e0e8e0] px-6 md:px-8 py-3.5">
+      <div className="bg-[#E8F5EE] border-b border-[#C5DFD1] px-6 md:px-8 py-3.5">
         <h3 className="font-display text-[13px] font-bold text-brand uppercase tracking-[0.04em] m-0">
           {title}
         </h3>

@@ -56,7 +56,7 @@ export default function LandingPage() {
       {/* ── HERO ── */}
       <section
         className="relative min-h-[50vh] flex flex-col items-center justify-center text-center px-6 py-20 overflow-hidden"
-        style={{ background: 'linear-gradient(160deg, #003D24 0%, #006B3F 50%, #007A47 100%)' }}
+        style={{ background: 'linear-gradient(160deg, #4D0E1E 0%, #7B1D33 50%, #8E2A41 100%)' }}
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -156,8 +156,8 @@ export default function LandingPage() {
               { Icon: LuShield,   text: 'Must be physically and medically fit' },
               { Icon: LuCheck,    text: 'Must be of good character and conduct' },
             ].map(({ Icon, text }) => (
-              <div key={text} className="flex items-start gap-3.5 bg-white border border-[#C5E0D0] border-l-4 border-l-brand-mid rounded-md px-4 py-4 shadow-sm">
-                <span className="shrink-0 mt-0.5"><Icon size={20} color="#007A47" /></span>
+              <div key={text} className="flex items-start gap-3.5 bg-white border border-gray-200 border-l-4 border-l-gold rounded-md px-4 py-4 shadow-sm">
+                <span className="shrink-0 mt-0.5"><Icon size={20} color="#006B3F" /></span>
                 <span className="text-[15px] text-gray-900 font-medium">{text}</span>
               </div>
             ))}
@@ -205,7 +205,7 @@ export default function LandingPage() {
             className={`inline-flex items-center gap-2 px-14 py-5 text-lg font-bold uppercase tracking-[0.06em] rounded border-2 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${
               isPortalClosed
                 ? 'bg-gray-500 border-gray-500 text-white cursor-not-allowed shadow-none'
-                : 'bg-brand-mid border-brand-mid text-white shadow-[0_4px_16px_rgba(0,107,63,0.35)] hover:shadow-[0_8px_28px_rgba(0,107,63,0.45)] cursor-pointer'
+                : 'bg-brand-mid border-brand-mid text-white shadow-[0_4px_16px_rgba(123,29,51,0.35)] hover:shadow-[0_8px_28px_rgba(123,29,51,0.45)] cursor-pointer'
             }`}
             onClick={() => !isPortalClosed && navigate('/register')}
             disabled={isPortalClosed}
